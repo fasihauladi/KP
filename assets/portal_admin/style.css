@@ -1,0 +1,57 @@
+
+.lab select {
+  width: 20%;
+  padding: 16px 20px;
+  border: 1px solid #dedeeb;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  background-color: #f5f5f5;
+}
+.lab {
+	    padding-bottom: 10px;
+		margin-left: 1px;
+		    margin-bottom: 0px;
+		
+}
+
+.some-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.some-form__fields {
+  display: contents;
+}
+
+.lab legend {
+    background-color: #92b2cb;
+    color: #fff;
+    padding: 3px 2px;
+	margin-bottom: 0px;
+}
+
+.lab input {
+    margin: .1rem;
+	font-size:12px;
+	border-top-width: 2px;
+    padding-top: 10px;
+}
+
+
+
+.form-group {
+        margin-bottom: 2px;
+}
+
+.modal {
+    text-align:center;
+}
+.modal-body {
+    max-height: 70vh; overflow-y: auto;
+}
+.modal-dialog {
+    display: inline-block;
+    width: auto;
+}
+
+

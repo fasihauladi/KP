@@ -19,7 +19,7 @@
                                 <h2><?= $bpt->judul; ?></h2>
                                 <!-- <?= $bpt->content; ?> -->
                                 <br>
-                                <a href="<?= base_url(); ?>berita-prodi/<?= $bpt->id; ?>" class="custom_btn">Selengkapnya contoh</a>
+                                <a href="<?= base_url(); ?>berita-prodi/<?= $bpt->id; ?>" class="custom_btn">Selengkapnya contoh ini</a>
                             </div>
                         </div>
                     </div>

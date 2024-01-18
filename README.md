@@ -1,4 +1,5 @@
 # KP TEKINI INFORMQTIKQ
+pertama
 
 
 aa

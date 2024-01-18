@@ -160,6 +160,22 @@ class ProdiPortal extends CI_Controller
         $data['beritaProdiTerbaru'] = $this->prodiberita->getBeritaTerbaru();
         $this->load->view('prodi_portal/dokumenmutu', $data);
     }
+    public function getdokumenbyid($id)
+    {
+        $dokumen = $this->dokumen->getDataById($id);
+
+        $data = [
+            "id" => $dokumen->id,
+            "mutuid" => $dokumen->mutuid,
+            "kodeprodi" => $dokumen->kodeprodi,
+            "namadokumen" => $dokumen->namadokumen,
+            "deskripsidokumen" => $dokumen->deskripsidokumen,
+            "path" => $dokumen->path,
+            "create" => $dokumen->create,
+            "update" => $dokumen->update,
+        ];
+        $this->output->set_content_type('application/json')->set_output(json_encode($data));
+    }
     public function downloadDokumenMutuProcess($id)
     {
         $message = 'gagal';
@@ -215,5 +231,14 @@ class ProdiPortal extends CI_Controller
         $pth    =   file_get_contents(base_url() . 'assets/pdfDB/dokumen/' . $dokumen->path);
         $nme    =   $dokumen->namadokumen . '.pdf';
         force_download($nme, $pth);
+    }
+
+    // MENU DOKUMEN SOP
+    public function viewDokumenSOP($id)
+    {
+        $data['dokumenSOPnya'] = $this->dokumen->getAllDataByMutuIdAndKodeProdi($id, 'tif');
+        $data['sopnya'] = $this->mutu->getDataById($id);
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getBeritaTerbaru();
+        $this->load->view('prodi_portal/dokumensop', $data);
     }
 }

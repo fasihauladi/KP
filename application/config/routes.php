@@ -58,6 +58,8 @@ $route['bidang-minat/(:num)'] = 'prodiPortal/viewBdMinat/$1';
 $route['laboratorium-teknik-informatika/(:any)'] = 'prodiPortal/viewLaboratoriumTeknikInformatika/$1';
 $route['dokumen-mutu/(:num)'] = 'prodiPortal/viewDokumenMutu/$1';
 $route['download-dokumen-mutu/(:num)'] = 'prodiPortal/downloadDokumenMutu/$1';
+$route['dokumen-sop/(:num)'] = 'prodiPortal/viewDokumenSOP/$1';
+
 
 
 

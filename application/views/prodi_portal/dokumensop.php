@@ -2,7 +2,7 @@
 	<div class="container ">
 		<div>
 			<div class="event_header text-center">
-				<h2><?= strtoupper($mutunya->deskripsi) ?></h2>
+				<h2><?= strtoupper($sopnya->deskripsi) ?></h2>
 			</div>
 			<div id="exTab1" class="container">
 				<div class="tab-content clearfix">
@@ -19,13 +19,13 @@
 									</thead>
 									<tbody>
 										<?php $nomorUrut = 1; ?>
-										<?php foreach ($dokumenMutunya as $dm) : ?>
+										<?php foreach ($dokumenSOPnya as $ds) : ?>
 											<tr>
 												<td class="text-center"><?= $nomorUrut; ?></td>
-												<td><?= $dm->namadokumen; ?></td>
+												<td><?= $ds->namadokumen; ?></td>
 												<td class="text-center">
-													<button class="btn btn-xs btn-success btn-flat" onclick="bukaModalDetail(<?= $dm->id; ?>)"><i class="fa fa-info-circle"></i></button>
-													<a href="<?= base_url() . 'download-dokumen-mutu/' . $dm->id ?>"><button class="btn btn-xs btn-info btn-flat"><i class="fa fa-download"></i></button></a>
+													<button class="btn btn-xs btn-success btn-flat" onclick="bukaModalDetail(<?= $ds->id; ?>)"><i class="fa fa-info-circle"></i></button>
+													<a href="<?= base_url() . 'download-dokumen-mutu/' . $ds->id ?>"><button class="btn btn-xs btn-info btn-flat"><i class="fa fa-download"></i></button></a>
 												</td>
 											</tr>
 											<?php $nomorUrut += 1; ?>

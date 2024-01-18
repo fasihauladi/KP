@@ -191,15 +191,6 @@
                                                         <a href="<?= base_url(); ?>dokumen-mutu/<?= $dmh->id ?>"><?= ucwords($dmh->deskripsi); ?></a>
                                                     </li>
                                                 <?php endforeach; ?>
-
-
-
-                                                <!-- <div id="grad1"></div>
-                                                <li><a href="#">Dokumen Mutu Akademik</a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Dokumen Mutu Sarana Prasarana</a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Dokumen Mutu Kemahasiswaan</a></li> -->
                                                 <div id="grad1"></div>
                                             </ul>
                                         </div><!-- /col -->
@@ -208,16 +199,13 @@
                                             <h5>Standar Operasion Prosedur</h5>
                                             <ul class="list-links">
                                                 <li role="separator" class="divider"></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">SOP Akademik</a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">SOP Kemahasiswaan</a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">SOP Sarana Dan Prasaranan</a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">SOP Skripsi</a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">SOP Kerja Praktek</a></li>
+
+                                                <?php foreach ($sopHeader as $sh) : ?>
+                                                    <div id="grad1"></div>
+                                                    <li>
+                                                        <a href="<?= base_url(); ?>dokumen-sop/<?= $sh->id ?>"><?= ucwords($sh->deskripsi); ?></a>
+                                                    </li>
+                                                <?php endforeach; ?>
                                                 <div id="grad1"></div>
                                             </ul>
                                         </div><!-- /col -->

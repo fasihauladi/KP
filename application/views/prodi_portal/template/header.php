@@ -300,8 +300,6 @@
                                                         <li><a href="prodi.html">KRS Onlne</a></li>
                                                         <div id="grad1"></div>
                                                         <li><a href="prodi.html">Pendaftaran Cuti</a></li>
-                                                        <div id="grad1"></div>
-                                                        <li><a href="prodi.html">Monitoring Skripsi</a></li>
                                                     </ul>
                                                 </div>
                                             </div>

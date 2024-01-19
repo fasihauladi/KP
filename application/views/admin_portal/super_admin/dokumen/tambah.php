@@ -16,7 +16,7 @@
         <div class="box box-success">
             <div class="box-header">
                 <h3 class="box-title text-capitalize">
-                    Tambah Dokumen Mutu
+                    Tambah Dokumen Mutu/SOP
                 </h3>
             </div>
             <div class="box-body">
@@ -36,12 +36,12 @@
                     </div>
                     <!-- mutuid -->
                     <div class="form-group col-12" id="inputan_mutuid">
-                        <label for="mutuid" class="form-control-placeholder">Kategori Mutu</label>
+                        <label for="mutuid" class="form-control-placeholder">Kategori</label>
                         <div>
                             <select id="mutuid" name="mutuid" class="form-control bg-info text-light">
-                                <option value=""> --- Pilih Kategori Mutu --- </option>
-                                <?php foreach ($listKategoriMutu as $lkm) : ?>
-                                    <option value="<?= $lkm->id; ?>"><?= $lkm->deskripsi; ?></option>
+                                <option value=""> --- Pilih Kategori --- </option>
+                                <?php foreach ($listKategori as $lk) : ?>
+                                    <option value="<?= $lk->id; ?>"><?= $lk->deskripsi; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

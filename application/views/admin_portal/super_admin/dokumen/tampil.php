@@ -35,9 +35,9 @@
                     </div>
                     <div class="form-group col-12">
                         <select class="form-control bg-primary text-light" name="kategorimutu_filter" id="kategorimutu_filter" onchange="changeFilter()">
-                            <option value="">-- Pilih Kategori Mutu--</option>
-                            <?php foreach ($listKategoriMutu as $lkm) : ?>
-                                <option value="<?= $lkm->id; ?>"><?= $lkm->deskripsi; ?></option>
+                            <option value="">-- Pilih Kategori--</option>
+                            <?php foreach ($listKategori as $lk) : ?>
+                                <option value="<?= $lk->id; ?>"><?= $lk->deskripsi; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -48,7 +48,7 @@
                         <tr>
                             <th class="text-capitalize">No.</th>
                             <th class="text-capitalize">Nama Dokumen</th>
-                            <th class="text-capitalize">Kateogori Mutu</th>
+                            <th class="text-capitalize">Kateogori</th>
                             <th class="text-capitalize">Deskripsi</th>
                             <th class="text-capitalize">Prodi</th>
                             <th class="text-capitalize">Aksi</th>
@@ -83,12 +83,12 @@
                     </div>
                     <!-- mutuid -->
                     <div class="form-group col-12" id="inputan_mutuid">
-                        <label for="mutuid" class="form-control-placeholder">Kategori Mutu</label>
+                        <label for="mutuid" class="form-control-placeholder">Kategori</label>
                         <div>
                             <select id="mutuid" name="mutuid" class="form-control bg-info text-light" disabled>
-                                <option value=""> --- Pilih Kategori Mutu --- </option>
-                                <?php foreach ($listKategoriMutu as $lkm) : ?>
-                                    <option value="<?= $lkm->id; ?>"><?= $lkm->deskripsi; ?></option>
+                                <option value=""> --- Pilih Kategori --- </option>
+                                <?php foreach ($listKategori as $lk) : ?>
+                                    <option value="<?= $lk->id; ?>"><?= $lk->deskripsi; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

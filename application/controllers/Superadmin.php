@@ -230,19 +230,19 @@ class Superadmin extends CI_Controller
     // MENU PENJAMIN MUTU -> DOKUMEN MUTU
     public function viewDokumenMutu()
     {
-        $data['listKategoriMutu'] = $this->mutu->getAllDataByKategori('Mutu');
+        $data['listKategori'] = $this->db->from('mutu')->order_by('deskripsi', 'asc')->get()->result();
         $data['listProdi'] = $this->prodi->getAllData();
         $this->load->view('admin_portal/super_admin/dokumen/tampil', $data);
     }
     public function viewTambahDokumenMutu()
     {
-        $data['listKategoriMutu'] = $this->mutu->getAllDataByKategori('Mutu');
+        $data['listKategori'] = $this->db->from('mutu')->order_by('deskripsi', 'asc')->get()->result();
         $data['listProdi'] = $this->prodi->getAllData();
         $this->load->view('admin_portal/super_admin/dokumen/tambah', $data);
     }
     public function viewEditDokumenMutu($id)
     {
-        $data['listKategoriMutu'] = $this->mutu->getAllDataByKategori('Mutu');
+        $data['listKategori'] = $this->db->from('mutu')->order_by('deskripsi', 'asc')->get()->result();
         $data['listProdi'] = $this->prodi->getAllData();
         $data['id'] = $id;
         $this->load->view('admin_portal/super_admin/dokumen/edit', $data);

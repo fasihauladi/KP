@@ -54,6 +54,12 @@
                         <input type="text" class="form-control" id="judulberita" name="judulberita">
                         <small class="text-danger judulberita-error"></small>
                     </div>
+                    <!-- tanggal -->
+                    <div class="form-group col-12" id="inputan_tanggal">
+                        <label for="tanggal" class="form-control-placeholder">Tanggal</label>
+                        <input type="date" class="form-control" id="tanggal" name="tanggal">
+                        <small class="text-danger tanggal-error"></small>
+                    </div>
                     <!-- thumbnail -->
                     <label for="thumbnail" class="form-control-placeholder">Thumbnail</label>
                     <div id="tempatThumbnail"></div>
@@ -99,6 +105,7 @@
                 $('#kodeprodi').val(response.kodeprodi);
                 $('#kodelab').val(response.kodelab);
                 $('#judulberita').val(response.judulberita);
+                $('#tanggal').val(response.tanggal);
                 if (response.thumbnail) {
                     $('#tempatThumbnail').html('<img height="200" width="200" class="rounded-circle" src="<?= base_url(); ?>assets/gambarDB/berita/lab/' + response.thumbnail + '" alt="Thumbnail" id="lihatThumbnail" name="lihatThumbnail">');
                 }
@@ -159,6 +166,7 @@
                     $('.kodeprodi-error').html(data.kodeprodi_error);
                     $('.kodelab-error').html(data.kodelab_error);
                     $('.judulberita-error').html(data.judulberita_error);
+                    $('.tanggal-error').html(data.tanggal_error);
                     // $('.thumbnail-error').html(data.thumbnail_error);
                     // $('.foto-error').html(data.foto_error);
                     $('.content-error').html(data.content_error);

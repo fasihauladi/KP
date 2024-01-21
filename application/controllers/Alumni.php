@@ -31,6 +31,7 @@ class Alumni extends CI_Controller
 
             $tombolAksi = '
                 <button class="btn btn-xs btn-info btn-flat" onclick="bukaModalDetail(' . "'" . $result->id . "'" . ')"><i class="fa fa-info-circle"></i></button>
+                <a href="https://wa.me/' . $result->telp . '?text="" target="_blank"><button class="btn btn-xs btn-success btn-flat"><i class="fa fa-whatsapp"></i></button></a>
                 <a href="' . base_url() . 'superadmin/data-alumni/edit/' . $result->id . '"><button class="btn btn-xs btn-warning btn-flat"><i class="fa fa-edit"></i></button></a>
                 <button class="btn btn-xs btn-danger btn-flat" onclick="bukaModalHapus(' . "'" . $result->id . "'" . ')"><i class="fa fa-trash"></i></button>
             ';

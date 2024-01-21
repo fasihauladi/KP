@@ -10,7 +10,7 @@ class S_labberita_model extends CI_Model
         date_default_timezone_set('Asia/Jakarta');
     }
     // datatable
-    var $order = ['id', 'judulberita', 'kodelab', 'kodeprodi', 'id'];
+    var $order = ['id', 'tanggal', 'judulberita', 'kodelab', 'kodeprodi', 'id'];
     // beres
     private function _get_data_query()
     {
@@ -37,7 +37,7 @@ class S_labberita_model extends CI_Model
         if (isset($_POST['order'])) {
             $this->db->order_by($this->order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
         } else {
-            $this->db->order_by('id', 'DESC');
+            $this->db->order_by('tanggal', 'DESC');
         }
     }
     // beres

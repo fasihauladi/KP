@@ -13,6 +13,7 @@ class Prodiberita extends CI_Controller
         // model
         $this->load->model('M_prodiberita', 'prodiberita');
         $this->load->model('M_prodi', 'prodi');
+        $this->load->model('M_prestasi', 'prestasi');
 
         $this->load->view("admin_portal/template/header");
         $this->load->view('admin_portal/template/menu');
@@ -28,6 +29,8 @@ class Prodiberita extends CI_Controller
         foreach ($resuls as $result) {
             $no++;
 
+            $tanggal = $this->prestasi->cekWaktuIndonesia($result->tanggal);
+
             $tombolAksi = '
                 <button class="btn btn-xs btn-info btn-flat" onclick="bukaModalDetail(' . "'" . $result->id . "'" . ')"><i class="fa fa-info-circle"></i></button>
                 <a href="' . base_url() . 'superadmin/seputar-prodi/edit/' . $result->id . '"><button class="btn btn-xs btn-warning btn-flat"><i class="fa fa-edit"></i></button></a>
@@ -38,6 +41,7 @@ class Prodiberita extends CI_Controller
 
             $row = [];
             $row[] =  '<div class="">' . $no . '</div>';
+            $row[] =  '<div class="">' . $tanggal . '</div>';
             $row[] =  '<div class="">' . $result->judul . '</div>';
             $row[] =  '<div class="">' . $prodi->namaprodi . '</div>';
             $row[] =  '<div class="">' . $tombolAksi . '</div>';
@@ -66,6 +70,7 @@ class Prodiberita extends CI_Controller
             "thumbnail" => $prodiberita->thumbnail,
             "foto2" => $prodiberita->foto2,
             "thumbnail2" => $prodiberita->thumbnail2,
+            "tanggal" => $prodiberita->tanggal,
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($data));
     }
@@ -78,6 +83,7 @@ class Prodiberita extends CI_Controller
         // konfigurasi form validasi
         $this->form_validation->set_rules('kodeprodi', 'zzz', 'trim|required', ["required" => "Prodi Tidak Boleh Kosong!"]);
         $this->form_validation->set_rules('judul', 'zzz', 'trim|required', ["required" => "Judul Tidak Boleh Kosong!"]);
+        $this->form_validation->set_rules('tanggal', 'zzz', 'trim|required', ["required" => "Tanggal Tidak Boleh Kosong!"]);
         $this->form_validation->set_rules('content', 'zzz', 'trim|required', ["required" => "Konten Tidak Boleh Kosong!"]);
         if ($this->form_validation->run() == FALSE) {
             if ($_FILES['thumbnail']['size'] == 0) {
@@ -138,6 +144,7 @@ class Prodiberita extends CI_Controller
                     "thumbnail" => $fileName1,
                     // "foto2"
                     // "thumbnail2"
+                    "tanggal" => $this->input->post('tanggal', true),
                     "create" => date("Y-m-d H:i:s"),
                     // "update"
                 ];
@@ -159,6 +166,7 @@ class Prodiberita extends CI_Controller
         $data = [
             "kodeprodi_error" => form_error("kodeprodi"),
             "judul_error" => form_error("judul"),
+            "tanggal_error" => form_error("tanggal"),
             "content_error" => form_error("content"),
             "thumbnail_error" => $thumbnail_error,
             "foto_error" => $foto_error,
@@ -210,6 +218,7 @@ class Prodiberita extends CI_Controller
         // konfigurasi form validasi
         $this->form_validation->set_rules('kodeprodi', 'zzz', 'trim|required', ["required" => "Prodi Tidak Boleh Kosong!"]);
         $this->form_validation->set_rules('judul', 'zzz', 'trim|required', ["required" => "Judul Tidak Boleh Kosong!"]);
+        $this->form_validation->set_rules('tanggal', 'zzz', 'trim|required', ["required" => "Tanggal Tidak Boleh Kosong!"]);
         $this->form_validation->set_rules('content', 'zzz', 'trim|required', ["required" => "Konten Tidak Boleh Kosong!"]);
         if ($this->form_validation->run() == TRUE) {
             // START TRANSACTION
@@ -273,6 +282,7 @@ class Prodiberita extends CI_Controller
                 "thumbnail" => $fileName1,
                 // "foto2"
                 // "thumbnail2"
+                "tanggal" => $this->input->post('tanggal', true),
                 // "create",
                 "update" => date('Y-m-d H:i:s'),
             ];
@@ -292,6 +302,7 @@ class Prodiberita extends CI_Controller
         $data = [
             "kodeprodi_error" => form_error("kodeprodi"),
             "judul_error" => form_error("judul"),
+            "tanggal_error" => form_error("tanggal"),
             "content_error" => form_error("content"),
             "message" => $message,
         ];

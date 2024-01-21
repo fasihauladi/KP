@@ -39,6 +39,7 @@
                     <thead>
                         <tr>
                             <th class="text-capitalize">No.</th>
+                            <th class="text-capitalize">Tanggal</th>
                             <th class="text-capitalize">Judul</th>
                             <th class="text-capitalize">Prodi</th>
                             <th class="text-capitalize">Aksi</th>

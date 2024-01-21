@@ -47,6 +47,7 @@
                     <thead>
                         <tr>
                             <th class="text-capitalize">No.</th>
+                            <th class="text-capitalize">Tanggal</th>
                             <th class="text-capitalize">Judul</th>
                             <th class="text-capitalize">Lab</th>
                             <th class="text-capitalize">Prodi</th>
@@ -178,7 +179,7 @@
                 [10, 25, 50, 100]
             ],
             "columnDefs": [{
-                "targets": [0, 2, 3, 4],
+                "targets": [0, 3, 4, 5],
                 "orderable": false,
             }],
         });

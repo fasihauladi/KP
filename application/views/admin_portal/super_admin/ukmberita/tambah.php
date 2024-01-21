@@ -53,6 +53,12 @@
                         <input type="text" class="form-control" id="judul" name="judul">
                         <small class="text-danger judul-error"></small>
                     </div>
+                    <!-- tanggal -->
+                    <div class="form-group col-12" id="inputan_tanggal">
+                        <label for="tanggal" class="form-control-placeholder">Tanggal</label>
+                        <input type="date" class="form-control" id="tanggal" name="tanggal">
+                        <small class="text-danger tanggal-error"></small>
+                    </div>
                     <!-- thumbnail -->
                     <div class="form-group col-12" id="inputan_thumbnail">
                         <label for="thumbnail" class="form-control-placeholder">Thumbnail</label>
@@ -117,6 +123,7 @@
                     $('.kodeprodi-error').html(data.kodeprodi_error);
                     $('.ukmid-error').html(data.ukmid_error);
                     $('.judul-error').html(data.judul_error);
+                    $('.tanggal-error').html(data.tanggal_error);
                     $('.thumbnail-error').html(data.thumbnail_error);
                     $('.foto-error').html(data.foto_error);
                     $('.content-error').html(data.content_error);

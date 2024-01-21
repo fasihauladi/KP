@@ -14,6 +14,7 @@ class Ukmberita extends CI_Controller
         $this->load->model('M_ukmberita', 'ukmberita');
         $this->load->model('M_ukm', 'ukm');
         $this->load->model('M_prodi', 'prodi');
+        $this->load->model('M_prestasi', 'prestasi');
 
         $this->load->view("admin_portal/template/header");
         $this->load->view('admin_portal/template/menu');
@@ -28,6 +29,8 @@ class Ukmberita extends CI_Controller
         foreach ($resuls as $result) {
             $no++;
 
+            $tanggal = $this->prestasi->cekWaktuIndonesia($result->tanggal);
+
             $prodi = $this->prodi->getDataByKode($result->kodeprodi)->namaprodi;
 
             $ukm = $this->ukm->getDataById($result->ukmid)->nama;
@@ -41,6 +44,7 @@ class Ukmberita extends CI_Controller
             $row = [];
 
             $row[] =  '<div class="">' . $no . '</div>';
+            $row[] =  '<div class="">' . $tanggal . '</div>';
             $row[] =  '<div class="">' . $result->judul . '</div>';
             $row[] =  '<div class="">' . $ukm . '</div>';
             $row[] =  '<div class="">' . $prodi . '</div>';
@@ -69,6 +73,7 @@ class Ukmberita extends CI_Controller
             "content" => $ukmberita->content,
             "foto" => $ukmberita->foto,
             "thumbnail" => $ukmberita->thumbnail,
+            "tanggal" => $ukmberita->tanggal,
             "create" => $ukmberita->create,
             "update" => $ukmberita->update,
         ];
@@ -84,6 +89,7 @@ class Ukmberita extends CI_Controller
         $this->form_validation->set_rules('kodeprodi', 'zzz', 'trim|required', ["required" => "Prodi Tidak Boleh Kosong!"]);
         $this->form_validation->set_rules('ukmid', 'zzz', 'trim|required', ["required" => "UKM Tidak Boleh Kosong!"]);
         $this->form_validation->set_rules('judul', 'zzz', 'trim|required', ["required" => "Judul Tidak Boleh Kosong!"]);
+        $this->form_validation->set_rules('tanggal', 'zzz', 'trim|required', ["required" => "Tanggal Tidak Boleh Kosong!"]);
         $this->form_validation->set_rules('content', 'zzz', 'trim|required', ["required" => "Konten Tidak Boleh Kosong!"]);
         if ($this->form_validation->run() == FALSE) {
             if ($_FILES['thumbnail']['size'] == 0) {
@@ -143,6 +149,7 @@ class Ukmberita extends CI_Controller
                     "content" => $this->input->post('content', true),
                     "foto" => $fileName2,
                     "thumbnail" => $fileName1,
+                    "tanggal" => $this->input->post('tanggal', true),
                     "create" => date("Y-m-d H:i:s"),
                     // "update"
                 ];
@@ -167,6 +174,7 @@ class Ukmberita extends CI_Controller
             "judul_error" => form_error("judul"),
             "content_error" => form_error("content"),
             "thumbnail_error" => $thumbnail_error,
+            "tanggal_error" => form_error("tanggal"),
             "foto_error" => $foto_error,
             "message" => $message,
         ];
@@ -217,6 +225,7 @@ class Ukmberita extends CI_Controller
         $this->form_validation->set_rules('kodeprodi', 'zzz', 'trim|required', ["required" => "Prodi Tidak Boleh Kosong!"]);
         $this->form_validation->set_rules('ukmid', 'zzz', 'trim|required', ["required" => "UKM Tidak Boleh Kosong!"]);
         $this->form_validation->set_rules('judul', 'zzz', 'trim|required', ["required" => "Judul Tidak Boleh Kosong!"]);
+        $this->form_validation->set_rules('tanggal', 'zzz', 'trim|required', ["required" => "Tanggal Tidak Boleh Kosong!"]);
         $this->form_validation->set_rules('content', 'zzz', 'trim|required', ["required" => "Konten Tidak Boleh Kosong!"]);
         if ($this->form_validation->run() == TRUE) {
             // START TRANSACTION
@@ -279,6 +288,7 @@ class Ukmberita extends CI_Controller
                 "content" => $this->input->post('content', true),
                 "foto" => $fileName2,
                 "thumbnail" => $fileName1,
+                "tanggal" => $this->input->post('tanggal', true),
                 // "create",
                 "update" => date('Y-m-d H:i:s'),
             ];
@@ -300,6 +310,7 @@ class Ukmberita extends CI_Controller
             "kodeprodi_error" => form_error("kodeprodi"),
             "ukmid_error" => form_error("ukmid"),
             "judul_error" => form_error("judul"),
+            "tanggal_error" => form_error("tanggal"),
             "content_error" => form_error("content"),
             "message" => $message,
         ];

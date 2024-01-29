@@ -52,13 +52,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'prodiPortal';
 //portal akademik
 $route['berita-prodi/(:num)'] = 'prodiPortal/viewBeritaProdi/$1';
+$route['berita-laboratorium/(:num)'] = 'prodiPortal/viewBeritaLaboratorium/$1';
+$route['berita-ukm/(:num)'] = 'prodiPortal/viewBeritaUKM/$1';
+$route['berita-pengabdian/(:num)'] = 'prodiPortal/viewBeritaPengabdian/$1';
 $route['prodi-teknik-informatika/(:num)'] = 'prodiPortal/viewProdiTeknikInformatika/$1';
-$route['karya-penelitian/(:num)'] = 'prodiPortal/viewKaryaPenelitian/$1';
 $route['bidang-minat/(:num)'] = 'prodiPortal/viewBdMinat/$1';
 $route['laboratorium-teknik-informatika/(:any)'] = 'prodiPortal/viewLaboratoriumTeknikInformatika/$1';
 $route['dokumen-mutu/(:num)'] = 'prodiPortal/viewDokumenMutu/$1';
 $route['download-dokumen-mutu/(:num)'] = 'prodiPortal/downloadDokumenMutu/$1';
 $route['dokumen-sop/(:num)'] = 'prodiPortal/viewDokumenSOP/$1';
+$route['peta-penelitian-dosen'] = 'prodiPortal/viewPetaPenelitianDosen';
+$route['peta-penelitian-mahasiswa'] = 'prodiPortal/viewPetaPenelitianMahasiswa';
+$route['kategori-penelitian/(:num)'] = 'prodiPortal/viewKategoriPenelitian/$1';
+$route['karya-penelitian/(:num)'] = 'prodiPortal/viewKaryaPenelitian/$1';
+$route['kategori-pengabdian/(:num)'] = 'prodiPortal/viewKategoriPengabdian/$1';
+$route['karya-pengabdian/(:num)'] = 'prodiPortal/viewKaryaPengabdian/$1';
+$route['unit-kegiatan-mahasiswa/(:num)'] = 'prodiPortal/viewUnitKegiatanMahasiswa/$1';
+$route['prestasi-mahasiswa/(:num)'] = 'prodiPortal/viewPrestasiMahasiswa/$1';
+
+
 
 
 

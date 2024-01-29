@@ -270,12 +270,14 @@
                 <?php foreach ($bidangMinat as $bm) : ?>
                     <div class="col-md-3">
                         <div class="counter_item text-center">
-                            <div class="sigle_counter_item">
-                                <img src="<?= base_url(); ?>assets/gambarDB/bidminat/<?= $bm->foto ?>" alt="">
-                                <div class="counter_text">
-                                    <p><?= $bm->namabidminat ?></p>
+                            <a href="<?= base_url(); ?>bidang-minat/<?= $bm->id; ?>">
+                                <div class="sigle_counter_item">
+                                    <img src="<?= base_url(); ?>assets/gambarDB/bidminat/<?= $bm->foto ?>" alt="">
+                                    <div class="counter_text">
+                                        <p><?= $bm->namabidminat ?></p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -449,34 +451,45 @@
                                     <li data-target="#fade-quote-carousel" data-slide-to="0" class="active"></li>
                                     <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
                                 </ol>
+                                <style>
+                                    .helloAlumni {
+                                        width: 200px;
+                                        height: 100px;
+                                    }
+
+                                    @media (max-width: 200px) {
+                                        .helloAlumni {
+                                            width: 150px;
+                                            height: 50px;
+                                        }
+                                    }
+                                </style>
                                 <!-- Carousel items -->
                                 <div class="carousel-inner">
                                     <div class="active item">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="profile-circle">
-                                                    <img src="img/tree_cut_3.jpg" alt="">
+                                                    <img src="<?= base_url(); ?>assets/gambarDB/alumni/<?= $listAlumni[0]; ?>" alt="" class="helloAlumni">
                                                 </div>
-                                                <div class="testimonial_content">
+                                                <div class="testimonial_content" style="margin-top: 12px;">
                                                     <i class="fa fa-quote-left"></i>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                    <p><?= $listAlumni[1]; ?></p>
                                                 </div>
                                                 <div class="testimonial_author">
-                                                    <h5>Sadequr Rahman Sojib</h5>
-                                                    <p>CEO, Fourder</p>
+                                                    <h5><?= $listAlumni[2]; ?></h5>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="profile-circle">
-                                                    <img src="img/tree_cut_3.jpg" alt="">
+                                                    <img src="<?= base_url(); ?>assets/gambarDB/alumni/<?= $listAlumni[3]; ?>" alt="" class="helloAlumni">
                                                 </div>
-                                                <div class="testimonial_content">
+                                                <div class="testimonial_content" style="margin-top: 12px;">
                                                     <i class="fa fa-quote-left"></i>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                    <p><?= $listAlumni[4]; ?></p>
                                                 </div>
                                                 <div class="testimonial_author">
-                                                    <h5>Sadequr Rahman Sojib</h5>
-                                                    <p>CEO, Fourder</p>
+                                                    <h5><?= $listAlumni[5]; ?></h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -486,28 +499,26 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="profile-circle">
-                                                    <img src="img/tree_cut_3.jpg" alt="">
+                                                    <img src="<?= base_url(); ?>assets/gambarDB/alumni/<?= $listAlumni[6]; ?>" alt="" class="helloAlumni">
                                                 </div>
-                                                <div class="testimonial_content">
+                                                <div class="testimonial_content" style="margin-top: 12px;">
                                                     <i class="fa fa-quote-left"></i>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                    <p><?= $listAlumni[7]; ?></p>
                                                 </div>
                                                 <div class="testimonial_author">
-                                                    <h5>Sadequr Rahman Sojib</h5>
-                                                    <p>CEO, Fourder</p>
+                                                    <h5><?= $listAlumni[8]; ?></h5>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="profile-circle">
-                                                    <img src="img/tree_cut_3.jpg" alt="">
+                                                    <img src="<?= base_url(); ?>assets/gambarDB/alumni/<?= $listAlumni[9]; ?>" alt="" class="helloAlumni">
                                                 </div>
-                                                <div class="testimonial_content">
+                                                <div class="testimonial_content" style="margin-top: 12px;">
                                                     <i class="fa fa-quote-left"></i>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                    <p><?= $listAlumni[10]; ?></p>
                                                 </div>
                                                 <div class="testimonial_author">
-                                                    <h5>Sadequr Rahman Sojib</h5>
-                                                    <p>CEO, Fourder</p>
+                                                    <h5><?= $listAlumni[11]; ?></h5>
                                                 </div>
                                             </div>
                                         </div>

@@ -227,11 +227,11 @@
                                             </div>
                                             <ul class="list-links">
                                                 <div id="grad1"></div>
-                                                <li><a href="#">Peta Penelitian Dosen</a></li>
+                                                <li><a href="<?= base_url(); ?>peta-penelitian-dosen">Peta Penelitian Dosen</a></li>
                                                 <div id="grad1"></div>
-                                                <li><a href="#">Peta Penelitan Mahasiswa</a></li>
+                                                <li><a href="<?= base_url(); ?>peta-penelitian-mahasiswa">Peta Penelitan Mahasiswa</a></li>
                                                 <div id="grad1"></div>
-                                                <li><a href="#">Rencana Penelitian lima tahuna</a></li>
+                                                <li><a href="#" style="color:red">Rencana Penelitian lima tahunan</a></li>
                                                 <div id="grad1"></div>
                                             </ul>
                                         </div><!-- /col -->
@@ -239,12 +239,12 @@
                                         <div class="col-sm-3 col-md-3">
                                             <h5>Karya Penelitian</h5>
                                             <ul class="list-links">
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Penelitan Multi Disiplin </a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Penliitian MBKM</a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Penelitian Inovasi dan Terapan</a></li>
+                                                <?php foreach ($kategoriPenelitianHeader as $kph) : ?>
+                                                    <div id="grad1"></div>
+                                                    <li>
+                                                        <a href="<?= base_url(); ?>kategori-penelitian/<?= $kph->id ?>"><?= $kph->namakatpen ?></a>
+                                                    </li>
+                                                <?php endforeach; ?>
                                                 <div id="grad1"></div>
                                             </ul>
                                         </div><!-- /col -->
@@ -252,12 +252,12 @@
                                         <div class="col-sm-3 col-md-3">
                                             <h5>Pengabdian Masyarakat</h5>
                                             <ul class="list-links">
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Pengabdian Teknologi Inovatif </a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Pengabdian Berkelanjutan</a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Pengabidan Terapan</a></li>
+                                                <?php foreach ($kategoriPengabdianHeader as $kph) : ?>
+                                                    <div id="grad1"></div>
+                                                    <li>
+                                                        <a href="<?= base_url(); ?>kategori-pengabdian/<?= $kph->id ?>"><?= $kph->kategori ?></a>
+                                                    </li>
+                                                <?php endforeach; ?>
                                                 <div id="grad1"></div>
                                             </ul>
                                         </div><!-- /col -->
@@ -276,16 +276,12 @@
                                         <div class="col-sm-3">
                                             <h5>unit kegiatakan mahasiswa (UKM)</h5>
                                             <ul class="list-links">
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Blue Murder</a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Information Technology Center </a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Pramuka</a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Data Science Community</a></li>
-                                                <div id="grad1"></div>
-                                                <li><a href="#">Landing Programming</a></li>
+                                                <?php foreach ($UKMHeader as $uh) : ?>
+                                                    <div id="grad1"></div>
+                                                    <li>
+                                                        <a href="<?= base_url(); ?>unit-kegiatan-mahasiswa/<?= $uh->id ?>"><?= ucwords($uh->nama); ?></a>
+                                                    </li>
+                                                <?php endforeach; ?>
                                                 <div id="grad1"></div>
                                             </ul>
                                             <div class="media">
@@ -309,11 +305,11 @@
                                             <h5>Prestasi Mahasiswa</h5>
                                             <ul class="list-links">
                                                 <div id="grad1"></div>
-                                                <li><a href="#">Prestasi International</a></li>
+                                                <li><a href="<?= base_url(); ?>prestasi-mahasiswa/3">Prestasi International</a></li>
                                                 <div id="grad1"></div>
-                                                <li><a href="#">Prestasi Nasional </a></li>
+                                                <li><a href="<?= base_url(); ?>prestasi-mahasiswa/2">Prestasi Nasional </a></li>
                                                 <div id="grad1"></div>
-                                                <li><a href="#">Prestasi Regional</a></li>
+                                                <li><a href="<?= base_url(); ?>prestasi-mahasiswa/1">Prestasi Regional</a></li>
                                                 <div id="grad1"></div>
                                             </ul>
                                             <!-- /col -->

@@ -2,7 +2,7 @@
 	<div class="container ">
 		<div>
 			<div class="event_header text-center">
-				<h2><?= strtoupper($mutunya->deskripsi) ?></h2>
+				<h2>PETA PENELITIAN DOSEN</h2>
 			</div>
 			<div id="exTab1" class="container">
 				<div class="tab-content clearfix">
@@ -19,13 +19,13 @@
 									</thead>
 									<tbody>
 										<?php $nomorUrut = 1; ?>
-										<?php foreach ($dokumenMutunya as $dm) : ?>
+										<?php foreach ($petaPenelitianDosennya as $ppd) : ?>
 											<tr>
 												<td class="text-center"><?= $nomorUrut; ?></td>
-												<td><?= $dm->namadokumen; ?></td>
+												<td><?= $ppd->namadok; ?></td>
 												<td class="text-center">
-													<button class="btn btn-xs btn-success btn-flat" onclick="bukaModalDetail(<?= $dm->id; ?>)"><i class="fa fa-info-circle"></i></button>
-													<a href="<?= base_url() . 'download-dokumen-mutu/' . $dm->id ?>"><button class="btn btn-xs btn-info btn-flat"><i class="fa fa-download"></i></button></a>
+													<button class="btn btn-xs btn-success btn-flat" onclick="bukaModalDetail(<?= $ppd->id; ?>)"><i class="fa fa-info-circle"></i></button>
+													<!-- <a href="<?= base_url() . 'download-dokumen-mutu/' . $ppd->id ?>"><button class="btn btn-xs btn-info btn-flat"><i class="fa fa-download"></i></button></a> -->
 												</td>
 											</tr>
 											<?php $nomorUrut += 1; ?>
@@ -89,10 +89,10 @@
 	function bukaModalDetail(id) {
 		$.ajax({
 			type: 'GET',
-			url: '<?= base_url('prodiPortal/getdokumenbyid/'); ?>' + id,
+			url: '<?= base_url('prodiPortal/getpetabyid/'); ?>' + id,
 			dataType: 'JSON',
 			success: function(response) {
-				$('#detailDeskripsi').html(response.deskripsidokumen);
+				$('#detailDeskripsi').html(response.deskripsi);
 				$('#detailModal').modal('show');
 			}
 		})

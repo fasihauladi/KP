@@ -2,19 +2,24 @@
 	<div class="container ">
 		<div>
 			<div class="event_header text-center">
-				<h2>BERITA PRODI <?= ucwords($dataProdi->namaprodi); ?></h2>
+				<h2>KARYA PENGABDIAN</h2>
 			</div>
 			<div id="exTab1" class="container">
 				<div class="tab-content clearfix">
 					<div class="row">
 						<div class="col-md-8">
 							<div class="text-center">
-								<h2 style="margin-top:10px;margin-bottom:30px"><?= $beritaProdinya->judul ?></h2>
-								<img src="<?= base_url(); ?>assets/gambarDB/berita/prodi/<?= $beritaProdinya->foto ?>" alt="" width="700">
+								<h2 style="margin-top:10px;margin-bottom:30px"><?= $dataKaryaPengabdian->judul ?></h2>
+								<img src="<?= base_url(); ?>assets/gambarDB/karya/pengabdian/<?= $dataKaryaPengabdian->foto ?>" alt="" width="500">
 							</div>
 							<br><br>
 							<div>
-								<?= $beritaProdinya->content ?>
+								<p>Kategori : <?= $kategoriPengabdiannya->kategori ?></p>
+								<p>Sub Kategori : <?= $kategoriPengabdiannya->subkategori ?></p>
+								<p>Sumber Dana : <?= $dataKaryaPengabdian->sumberdana ?></p>
+								<p>Dosen : <?= $dosennya->nama ?> (<?= $dosennya->nip ?>)</p>
+								<br>
+								<?= $dataKaryaPengabdian->deskripsi ?>
 							</div>
 						</div>
 						<!-- berita samping -->
@@ -33,7 +38,6 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
 			</div>
 		</div>
 		<!--End of row-->

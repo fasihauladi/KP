@@ -21,11 +21,22 @@ class ProdiPortal extends CI_Controller
         $this->load->model('M_karyalab', 'karyalab');
         $this->load->model('M_mutu', 'mutu');
         $this->load->model('M_dokumen', 'dokumen');
+        $this->load->model('M_peta', 'peta');
+        $this->load->model('M_labberita', 'labberita');
+        $this->load->model('M_katpengabdian', 'katpengabdian');
+        $this->load->model('M_karyapengabdian', 'karyapengabdian');
+        $this->load->model('M_ukm', 'ukm');
+        $this->load->model('M_alumni', 'alumni');
+        $this->load->model('M_mahasiswa', 'mahasiswa');
+        $this->load->model('M_prestasi', 'prestasi');
 
         $data['bidangMinatHeader'] = $this->bidminat->getAllDataByKode('tif');
         $data['labHeader'] = $this->laboratorium->getAllDataByKode('tif');
         $data['dokumenMutuHeader'] = $this->mutu->getAllDataByKategori('Mutu');
         $data['sopHeader'] = $this->mutu->getAllDataByKategori('SOP');
+        $data['kategoriPenelitianHeader'] = $this->katpenelitian->getAllKategori();
+        $data['kategoriPengabdianHeader'] = $this->katpengabdian->getAllKategori();
+        $data['UKMHeader'] = $this->ukm->getAllData();
 
         $this->load->view("prodi_portal/template/header", $data);
     }
@@ -46,6 +57,22 @@ class ProdiPortal extends CI_Controller
 
         // bidang minat
         $data['bidangMinat'] = $this->bidminat->getAllDataByKode('tif');
+
+        $alumni = $this->alumni->get4RandomAlumni();
+
+        $listAlumni = ['', '', '', '', '', '', '', '', '', '', '', ''];
+        $i = 0;
+        foreach ($alumni as $alu) {
+            $listAlumni[$i] = $alu->foto;
+            $i += 1;
+            $listAlumni[$i] = $alu->kesan;
+            $i += 1;
+            $namaMahasiswa = $this->mahasiswa->getDataByNpm($alu->npm)->nama;
+            $listAlumni[$i] = $namaMahasiswa;
+            $i += 1;
+        }
+
+        $data['listAlumni'] = $listAlumni;
 
 
         $this->load->view('prodi_portal/home', $data);
@@ -69,7 +96,7 @@ class ProdiPortal extends CI_Controller
         $data['dataProdi'] = $this->prodi->getDataByKode('tif');
         $data['dataDosen'] = $this->db->order_by('nama', 'asc')->get_where('dosen', ['kodeprodi' => 'tif'])->result();
 
-        $data['beritaProdiTerbaru'] = $this->prodiberita->getBeritaTerbaru();
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
         $this->load->view('prodi_portal/prodi', $data);
     }
     public function getdosenbynip($nip)
@@ -98,25 +125,15 @@ class ProdiPortal extends CI_Controller
     {
         $data['beritaProdinya'] = $this->prodiberita->getDataById($id);
         $data['dataProdi'] = $this->prodi->getDataByKode('tif');
-        $data['beritaProdiTerbaru'] = $this->prodiberita->getBeritaTerbaru();
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
         $this->load->view('prodi_portal/beritaprodi', $data);
-    }
-
-    // MENU KARYAPENELITIAN
-    public function viewKaryaPenelitian($id)
-    {
-        $data['dataKaryaPenelitian'] = $this->karyapenelitian->getDataById($id);
-        $data['kategoriPenelitiannya'] = $this->katpenelitian->getDataById($data['dataKaryaPenelitian']->katpenelitianid);
-        $data['dosennya'] = $this->dosen->getDataByNip($data['dataKaryaPenelitian']->nip);
-        $data['beritaProdiTerbaru'] = $this->prodiberita->getBeritaTerbaru();
-        $this->load->view('prodi_portal/karyapenelitian', $data);
     }
 
     // MENU BIDANG MINAT
     public function viewBdMinat($id)
     {
         $data['bidangMinatnya'] = $this->bidminat->getDataById($id);
-        $data['beritaProdiTerbaru'] = $this->prodiberita->getBeritaTerbaru();
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
         $this->load->view('prodi_portal/bidangminat', $data);
     }
 
@@ -132,7 +149,7 @@ class ProdiPortal extends CI_Controller
         $data['dataKaryaLab'] = $this->db->order_by('id', 'desc')->get_where('karyalab', ['kodeprodi' => 'tif', 'kodelab' => $kodeLab])->result();
 
 
-        $data['beritaProdiTerbaru'] = $this->prodiberita->getBeritaTerbaru();
+        $data['beritaLabTerbaru'] = $this->labberita->getSeputarLabTerbaru();
         $this->load->view('prodi_portal/laboratorium', $data);
     }
     public function getkaryalabbyid($id)
@@ -157,7 +174,7 @@ class ProdiPortal extends CI_Controller
     {
         $data['dokumenMutunya'] = $this->dokumen->getAllDataByMutuIdAndKodeProdi($id, 'tif');
         $data['mutunya'] = $this->mutu->getDataById($id);
-        $data['beritaProdiTerbaru'] = $this->prodiberita->getBeritaTerbaru();
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
         $this->load->view('prodi_portal/dokumenmutu', $data);
     }
     public function getdokumenbyid($id)
@@ -238,7 +255,108 @@ class ProdiPortal extends CI_Controller
     {
         $data['dokumenSOPnya'] = $this->dokumen->getAllDataByMutuIdAndKodeProdi($id, 'tif');
         $data['sopnya'] = $this->mutu->getDataById($id);
-        $data['beritaProdiTerbaru'] = $this->prodiberita->getBeritaTerbaru();
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
         $this->load->view('prodi_portal/dokumensop', $data);
+    }
+
+    // MENU PETA PENELITIAN DOSEN
+    public function viewPetaPenelitianDosen()
+    {
+        $data['petaPenelitianDosennya'] = $this->peta->getAllDataByKategoriAndKodeProdi('Dosen', 'tif');
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
+        $this->load->view('prodi_portal/petapenelitiandosen', $data);
+    }
+    public function getpetabyid($id)
+    {
+        $peta = $this->peta->getDataById($id);
+
+        $data = [
+            "id" => $peta->id,
+            "kodeprodi" => $peta->kodeprodi,
+            "kategori" => $peta->kategori,
+            "namadok" => $peta->namadok,
+            "deskripsi" => $peta->deskripsi,
+            "berkasphp" => $peta->berkasphp,
+            "create" => $peta->create,
+            "update" => $peta->update,
+        ];
+        $this->output->set_content_type('application/json')->set_output(json_encode($data));
+    }
+    // MENU PETA PENELITIAN MAHASISWA
+    public function viewPetaPenelitianMahasiswa()
+    {
+        $data['petaPenelitianMahasiswanya'] = $this->peta->getAllDataByKategoriAndKodeProdi('Mahasiswa', 'tif');
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
+        $this->load->view('prodi_portal/petapenelitianmahasiswa', $data);
+    }
+    // MENU KATEGORI PENELITIAN
+    public function viewKategoriPenelitian($id)
+    {
+        $data['kategoriPenelitiannya'] = $this->katpenelitian->getDataById($id);
+
+        $data['subKategori'] = $this->katpenelitian->getAllSubKategoriByKateogri($data['kategoriPenelitiannya']->namakatpen);
+
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
+        $this->load->view('prodi_portal/kategoripenelitian', $data);
+    }
+    // MENU KARYA PENELITIAN
+    public function viewKaryaPenelitian($id)
+    {
+        $data['dataKaryaPenelitian'] = $this->karyapenelitian->getDataById($id);
+        $data['kategoriPenelitiannya'] = $this->katpenelitian->getDataById($data['dataKaryaPenelitian']->katpenelitianid);
+        $data['dosennya'] = $this->dosen->getDataByNip($data['dataKaryaPenelitian']->nip);
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
+        $this->load->view('prodi_portal/karyapenelitian', $data);
+    }
+
+    // MENU KATEGORI PENGABDIAN
+    public function viewKategoriPengabdian($id)
+    {
+        $data['kategoriPengabdiannya'] = $this->katpengabdian->getDataById($id);
+
+        $data['subKategori'] = $this->katpengabdian->getAllSubKategoriByKateogri($data['kategoriPengabdiannya']->kategori);
+
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
+        $this->load->view('prodi_portal/kategoripengabdian', $data);
+    }
+    // MENU KARYA PENGABDIAN
+    public function viewKaryaPengabdian($id)
+    {
+        $data['dataKaryaPengabdian'] = $this->karyapengabdian->getDataById($id);
+        $data['kategoriPengabdiannya'] = $this->katpengabdian->getDataById($data['dataKaryaPengabdian']->katpengabdianid);
+        $data['dosennya'] = $this->dosen->getDataByNip($data['dataKaryaPengabdian']->nip);
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
+        $this->load->view('prodi_portal/karyapengabdian', $data);
+    }
+
+    // MENU UNIT KEGIATAN MAHASISWA
+    public function viewUnitKegiatanMahasiswa($id)
+    {
+        $data['dataUKM'] = $this->ukm->getDataById($id);
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
+        $this->load->view('prodi_portal/ukm', $data);
+    }
+
+    // MENU PRESTASI MAHASISWA
+    public function viewPrestasiMahasiswa($noTab)
+    {
+        $data['tabRegional'] = '';
+        $data['tabNasional'] = '';
+        $data['tabInternasional'] = '';
+
+        if ($noTab == 1) {
+            $data['tabRegional'] = 'active';
+        } else if ($noTab == 2) {
+            $data['tabNasional'] = 'active';
+        } else if ($noTab == 3) {
+            $data['tabInternasional'] = 'active';
+        }
+
+        $data['prestasiRegional'] = $this->prestasi->getAllDataByKategori('Regional');
+        $data['prestasiNasional'] = $this->prestasi->getAllDataByKategori('Nasional');
+        $data['prestasiInternasional'] = $this->prestasi->getAllDataByKategori('Internasional');
+
+        $data['beritaProdiTerbaru'] = $this->prodiberita->getSeputarProdiTerbaru();
+        $this->load->view('prodi_portal/prestasi', $data);
     }
 }

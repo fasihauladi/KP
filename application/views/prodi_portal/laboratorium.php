@@ -29,27 +29,10 @@
 									<?= $profileLab->profile ?>
 								</div>
 							</div>
-							<!--End of col-md-8-->
 							<!-- berita samping -->
 							<div class="col-md-4" style="border-left: 0.2px solid lightgray;border-bottom: 0.2px solid lightgray">
-								<h3 class="judul"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Seputar Teknik Informatika</h3>
-								<?php foreach ($beritaProdiTerbaru as $bpt) : ?>
-									<div class="event_news">
-										<div class="event_single_item fix">
-											<div class="event_news_img floatleft">
-												<img src="<?= base_url(); ?>assets/gambarDB/berita/prodi/<?= $bpt->thumbnail ?>" alt="">
-											</div>
-											<div class="event_news_text">
-												<a href="<?= base_url(); ?>berita-prodi/<?= $bpt->id; ?>">
-													<h4><?= $bpt->judul ?></h4>
-												</a>
-												<?= substr($bpt->content, 0, 200); ?> ...
-											</div>
-										</div>
-									</div>
-								<?php endforeach; ?>
+								<?= $beritaLabTerbaru; ?>
 							</div>
-							<!--End of col-md-4-->
 						</div>
 					</div>
 					<div class="tab-pane" id="2a">
@@ -80,22 +63,7 @@
 							</div>
 							<!-- berita samping -->
 							<div class="col-md-4" style="border-left: 0.2px solid lightgray;border-bottom: 0.2px solid lightgray">
-								<h3 class="judul"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Seputar Teknik Informatika</h3>
-								<?php foreach ($beritaProdiTerbaru as $bpt) : ?>
-									<div class="event_news">
-										<div class="event_single_item fix">
-											<div class="event_news_img floatleft">
-												<img src="<?= base_url(); ?>assets/gambarDB/berita/prodi/<?= $bpt->thumbnail ?>" alt="">
-											</div>
-											<div class="event_news_text">
-												<a href="<?= base_url(); ?>berita-prodi/<?= $bpt->id; ?>">
-													<h4><?= $bpt->judul ?></h4>
-												</a>
-												<?= substr($bpt->content, 0, 200); ?> ...
-											</div>
-										</div>
-									</div>
-								<?php endforeach; ?>
+								<?= $beritaLabTerbaru; ?>
 							</div>
 						</div>
 					</div>
@@ -138,10 +106,15 @@
 			</div>
 			<div class="modal-body">
 				<form class="form-row" id="formDetail" enctype="multipart/form-data">
+					<!-- foto_karya -->
+					<div class="form-group text-center" id="tempat_foto_karya">
+						<!-- <label>Foto</label> -->
+						<div id="foto_karya"></div>
+					</div>
 					<!-- nama_karya -->
 					<div class="form-group col-12 mt-2" id="inputan_nama_karya">
 						<label class="form-control-placeholder" for="nama_karya">Nama Karya</label>
-						<input type="text" class="form-control" id="nama_karya" name="nama_karya" value="" disabled>
+						<textarea class="form-control" name="nama_karya" id="nama_karya" disabled></textarea>
 					</div>
 					<style>
 						.textAreaUntukKasusCKEditor {
@@ -167,11 +140,6 @@
 					<div class="form-group col-12 mt-2" id="inputan_deskripsi_karya">
 						<label class="form-control-placeholder" for="deskripsi_karya">Deskripsi</label>
 						<div id="deskripsi_karya" class="textAreaUntukKasusCKEditor"></div>
-					</div>
-					<!-- foto_karya -->
-					<div class="form-group" id="tempat_foto_karya">
-						<label>Foto</label>
-						<div id="foto_karya"></div>
 					</div>
 				</form>
 			</div>

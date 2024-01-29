@@ -24,22 +24,7 @@
 						</div>
 						<!-- berita samping -->
 						<div class="col-md-4" style="border-left: 0.2px solid lightgray;border-bottom: 0.2px solid lightgray">
-							<h3 class="judul"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Seputar Teknik Informatika</h3>
-							<?php foreach ($beritaProdiTerbaru as $bpt) : ?>
-								<div class="event_news">
-									<div class="event_single_item fix">
-										<div class="event_news_img floatleft">
-											<img src="<?= base_url(); ?>assets/gambarDB/berita/prodi/<?= $bpt->thumbnail ?>" alt="">
-										</div>
-										<div class="event_news_text">
-											<a href="<?= base_url(); ?>berita-prodi/<?= $bpt->id; ?>">
-												<h4><?= $bpt->judul ?></h4>
-											</a>
-											<?= substr($bpt->content, 0, 200); ?> ...
-										</div>
-									</div>
-								</div>
-							<?php endforeach; ?>
+							<?= $beritaProdiTerbaru; ?>
 						</div>
 					</div>
 				</div>
@@ -53,7 +38,6 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
 			</div>
 		</div>
 		<!--End of row-->

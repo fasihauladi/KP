@@ -18,4 +18,11 @@ class M_katpenelitian extends CI_Model
         $this->db->group_by('namakatpen');
         return $this->db->get()->result();
     }
+    public function getAllSubKategoriByKateogri($kategori)
+    {
+        $this->db->from('katpenelitian');
+        $this->db->where('namakatpen', $kategori);
+        $this->db->order_by('namasubkatpen', 'asc');
+        return $this->db->get()->result();
+    }
 }

@@ -24,4 +24,11 @@ class M_karyapenelitian extends CI_Model
         $this->db->limit(5);
         return $this->db->get()->result();
     }
+    public function getAllDataByKategoriPenelitianId($katpenelitianid)
+    {
+        $this->db->from('karyapenelitian');
+        $this->db->where('katpenelitianid', $katpenelitianid);
+        $this->db->order_by('id', 'desc');
+        return $this->db->get()->result();
+    }
 }

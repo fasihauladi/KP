@@ -12,6 +12,11 @@ class M_prestasi extends CI_Model
         return $this->db->get_where('prestasi', ['id' => $id])->row();
     }
 
+    public function getAllDataByKategori($kategori)
+    {
+        return $this->db->get_where('prestasi', ['kategori' => $kategori])->result();
+    }
+
     public function cekWaktuIndonesia($tanggal)
     {
 

@@ -1,73 +1,99 @@
+<?php
+$ci = &get_instance();
+$ci->load->model('M_prestasi', 'prestasi');
+?>
 <section id="event">
 	<div class="container ">
 		<div>
 			<div class="event_header text-center">
-				<h2>PRODI <?= ucwords($dataProdi->namaprodi); ?></h2>
+				<h2>PRESTASI MAHASISWA</h2>
 			</div>
 			<div id="exTab1" class="container">
 				<ul class="nav nav-pills">
-					<li class="<?= $tabProfile ?>">
-						<a href="#1a" data-toggle="tab">Profil</a>
+					<li class="<?= $tabRegional ?>">
+						<a href="#1a" data-toggle="tab">Regional</a>
 					</li>
-					<li class="<?= $tabVisiMisi ?>">
-						<a href="#2a" data-toggle="tab">Visi Misi</a>
+					<li class="<?= $tabNasional ?>">
+						<a href="#2a" data-toggle="tab">Nasional</a>
 					</li>
-					<li class="<?= $tabDosen ?>">
-						<a href="#3a" data-toggle="tab">Dosen</a>
+					<li class="<?= $tabInternasional ?>">
+						<a href="#3a" data-toggle="tab">Internasional</a>
 					</li>
 				</ul>
 				<div class="tab-content clearfix">
-					<div class="tab-pane <?= $tabProfile ?>" id="1a">
-						<div class="row">
-							<div class="col-md-8">
-								<!-- <h3> Profil Prodi <?= ucwords($dataProdi->namaprodi); ?></h3> -->
-								<div class="row">
-									<?= $dataProdi->profile; ?>
-								</div>
-							</div>
-							<!-- berita samping -->
-							<div class="col-md-4" style="border-left: 0.2px solid lightgray;border-bottom: 0.2px solid lightgray">
-								<?= $beritaProdiTerbaru; ?>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane <?= $tabVisiMisi ?>" id="2a">
-						<div class="row">
-							<div class="col-md-8">
-								<!-- <h3> Visi Misi Prodi <?= ucwords($dataProdi->namaprodi); ?></h3> -->
-								<div class="row">
-									<?= $dataProdi->visimisi; ?>
-								</div>
-							</div>
-							<!-- berita samping -->
-							<div class="col-md-4" style="border-left: 0.2px solid lightgray;border-bottom: 0.2px solid lightgray">
-								<?= $beritaProdiTerbaru; ?>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane <?= $tabDosen ?>" id="3a">
+					<div class="tab-pane <?= $tabRegional ?>" id="1a">
 						<div class="row">
 							<div class="col-md-8">
 								<div class="row" style="margin:7px">
 									<table id="example" class="table table-striped table-bordered" style="width:100%;">
 										<thead>
 											<tr>
-												<th class="text-center">No</th>
-												<th class="text-center">Nama</th>
-												<th class="text-center">NIP</th>
-												<th class="text-center">Detail</th>
+												<th class="text-center">Waktu</th>
+												<th class="text-center">Prestasi</th>
 											</tr>
 										</thead>
 										<tbody>
-											<?php $nomorUrut = 1; ?>
-											<?php foreach ($dataDosen as $ds) : ?>
+											<?php foreach ($prestasiRegional as $pr) : ?>
 												<tr>
-													<td class="text-center"><?= $nomorUrut; ?></td>
-													<td><?= $ds->nama; ?></td>
-													<td class="text-center"><?= $ds->nip; ?></td>
-													<td class="text-center"><button class="btn btn-xs btn-info btn-flat" onclick="bukaModalDetail('<?= $ds->nip ?>')"><i class="fa fa-info-circle"></i></button></td>
+													<td><?= $ci->prestasi->cekWaktuIndonesia($pr->waktu); ?></td>
+													<td><?= $pr->namaprestasi; ?></td>
 												</tr>
-												<?php $nomorUrut += 1; ?>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- berita samping -->
+							<div class="col-md-4" style="border-left: 0.2px solid lightgray;border-bottom: 0.2px solid lightgray">
+								<?= $beritaProdiTerbaru; ?>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane <?= $tabNasional ?>" id="2a">
+						<div class="row">
+							<div class="col-md-8">
+								<div class="row" style="margin:7px">
+									<table id="example" class="table table-striped table-bordered" style="width:100%;">
+										<thead>
+											<tr>
+												<th class="text-center">Waktu</th>
+												<th class="text-center">Prestasi</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach ($prestasiNasional as $pn) : ?>
+												<tr>
+													<td><?= $ci->prestasi->cekWaktuIndonesia($pn->waktu); ?></td>
+													<td><?= $pn->namaprestasi; ?></td>
+												</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- berita samping -->
+							<div class="col-md-4" style="border-left: 0.2px solid lightgray;border-bottom: 0.2px solid lightgray">
+								<?= $beritaProdiTerbaru; ?>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane <?= $tabInternasional ?>" id="3a">
+						<div class="row">
+							<div class="col-md-8">
+								<div class="row" style="margin:7px">
+									<table id="example" class="table table-striped table-bordered" style="width:100%;">
+										<thead>
+											<tr>
+												<th class="text-center">Waktu</th>
+												<th class="text-center">Prestasi</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach ($prestasiInternasional as $pi) : ?>
+												<tr>
+													<td><?= $ci->prestasi->cekWaktuIndonesia($pi->waktu); ?></td>
+													<td><?= $pi->namaprestasi; ?></td>
+												</tr>
 											<?php endforeach; ?>
 										</tbody>
 									</table>
